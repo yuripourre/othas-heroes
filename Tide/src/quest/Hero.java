@@ -20,8 +20,29 @@ public class Hero extends Player{
 	public void draw(Graphic g) {
 		layer.draw(g);
 	}
+
+	@Override
+	public void stand(){
+		super.stand();
+		
+		layer.setFrames(6);
+		
+		layer.setYImage(layer.getYTile()*0);
+		layer.setXImage(layer.getXTile()*0);
+	}
 	
-	public void update() {
+	@Override
+	public void attack(){
+		super.attack();
+		
+		layer.setFrames(4);
+		
+		layer.setXImage(layer.getXTile()*0);
+		layer.setYImage(layer.getYTile()*2);
+	}
+	
+	@Override
+	public void update(long now) {
 
 		if(state.contains(PlayerState.WALK_RIGHT)){
 			layer.setOffsetX(walkSpeed);
@@ -34,10 +55,10 @@ public class Hero extends Player{
 		}else if(state.contains(PlayerState.WALK_UP)){
 			layer.setOffsetY(-walkSpeed);
 		}
-		
-		if(isWalking()){
+				
+		if(isWalking()||isAttacking()){
 			layer.nextFrame();
-		}		
+		}
 		
 	}
 	
