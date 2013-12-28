@@ -7,9 +7,10 @@ import br.com.etyllica.animation.Updatable;
 import br.com.etyllica.core.Drawable;
 import br.com.etyllica.core.event.KeyEvent;
 import br.com.etyllica.core.video.Graphic;
+import br.com.etyllica.layer.GeometricLayer;
 import br.com.tide.input.controller.Controller;
 
-public class Player implements Drawable, Updatable, PlayerListener{
+public class Player extends GeometricLayer implements Drawable, Updatable, PlayerListener{
 
 	protected float health = 100;
 
@@ -21,15 +22,10 @@ public class Player implements Drawable, Updatable, PlayerListener{
 
 	protected Set<PlayerState> state = new HashSet<PlayerState>();
 
-	public Player(String name){
-		this();
-
-		this.name = name; 		
-	}
-
-	public Player(){
-		super();
-
+	
+	public Player(float x, float y, float w, float h){
+		super(x,y,w,h);
+		
 		state.add(PlayerState.STAND);
 	}
 
@@ -84,6 +80,7 @@ public class Player implements Drawable, Updatable, PlayerListener{
 	public void stand(){
 		state.clear();
 		state.add(PlayerState.STAND);
+		onStand();
 	}
 	
 	public void attack(){
@@ -203,6 +200,12 @@ public class Player implements Drawable, Updatable, PlayerListener{
 
 	@Override
 	public void onStopAttack() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onStand() {
 		// TODO Auto-generated method stub
 		
 	}

@@ -22,4 +22,6 @@ public interface PlayerListener {
 	
 	public void onStopAttack();
 	
+	public void onStand();
+	
 }
