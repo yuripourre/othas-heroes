@@ -2,6 +2,7 @@ package quest;
 
 import br.com.etyllica.core.video.Graphic;
 import br.com.etyllica.layer.AnimatedLayer;
+import br.com.etyllica.layer.StaticLayer;
 import br.com.tide.platform.player.Player;
 import br.com.tide.platform.player.PlayerState;
 
@@ -9,11 +10,23 @@ public class Hero extends Player{
 
 	private AnimatedLayer layer;
 	
-	public Hero(int x, int y, String path) {
+	private StaticLayer rightLayer;
+	
+	private StaticLayer leftLayer = null;
 		
-		layer = new AnimatedLayer(x,y,32,64,path);
+	public Hero(int x, int y, String rightPath, String leftPath) {
+		super();
+		
+		rightLayer = new StaticLayer(rightPath);
+
+		leftLayer = new StaticLayer(leftPath);
+		
+		layer = new AnimatedLayer(x,y,32,64);
 		layer.setFrames(6);
 		layer.setStopped(false);
+		
+		onWalkRight();
+		
 	}
 	
 	@Override
@@ -21,6 +34,16 @@ public class Hero extends Player{
 		layer.draw(g);
 	}
 
+	@Override
+	public void onWalkLeft(){
+		layer.cloneLayer(leftLayer);
+	}
+	
+	@Override
+	public void onWalkRight(){
+		layer.cloneLayer(rightLayer);
+	}
+	
 	@Override
 	public void stand(){
 		super.stand();

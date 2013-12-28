@@ -9,7 +9,7 @@ import br.com.etyllica.core.event.KeyEvent;
 import br.com.etyllica.core.video.Graphic;
 import br.com.tide.input.controller.Controller;
 
-public class Player implements Drawable, Updatable{
+public class Player implements Drawable, Updatable, PlayerListener{
 
 	protected float health = 100;
 
@@ -43,18 +43,42 @@ public class Player implements Drawable, Updatable{
 
 	public void walkLeft(){
 		state.add(PlayerState.WALK_LEFT);
+		onWalkLeft();
+	}
+	
+	public void stopWalkLeft(){
+		state.remove(PlayerState.WALK_LEFT);
+		onStopWalkLeft();
 	}
 
 	public void walkRight(){
 		state.add(PlayerState.WALK_RIGHT);
+		onWalkRight();
+	}
+	
+	public void stopWalkRight(){
+		state.remove(PlayerState.WALK_RIGHT);
+		onStopWalkRight();
 	}
 
 	public void walkUp(){
 		state.add(PlayerState.WALK_UP);
+		onWalkUp();
 	}
-
+	
+	public void stopWalkUp(){
+		state.remove(PlayerState.WALK_UP);
+		onStopWalkUp();
+	}
+	
 	public void walkDown(){
 		state.add(PlayerState.WALK_DOWN);
+		onWalkDown();
+	}
+	
+	public void stopWalkDown(){
+		state.remove(PlayerState.WALK_DOWN);
+		onStopWalkDown();
 	}
 
 	public void stand(){
@@ -65,36 +89,41 @@ public class Player implements Drawable, Updatable{
 	public void attack(){
 		state.clear();
 		state.add(PlayerState.ATTACK);
+		onAttack();
+	}
+	
+	public void stopAttack(){
+		stand();
+		onStopAttack();
 	}
 
 	public void handleEvent(KeyEvent event){
 
 		if(event.isKeyDown(controller.getRightButton())){
-			state.add(PlayerState.WALK_RIGHT);
+			walkRight();
 		}else if(event.isKeyUp(controller.getRightButton())){
-			state.remove(PlayerState.WALK_RIGHT);
+			stopWalkRight();
 		}
 
 		if(event.isKeyDown(controller.getLeftButton())){
-			state.add(PlayerState.WALK_LEFT);
+			walkLeft();
 		}else if(event.isKeyUp(controller.getLeftButton())){
-			state.remove(PlayerState.WALK_LEFT);
+			stopWalkLeft();
 		}
 
 		if(event.isKeyDown(controller.getUpButton())){
-			state.add(PlayerState.WALK_UP);
+			walkUp();
 		}else if(event.isKeyUp(controller.getUpButton())){
-			state.remove(PlayerState.WALK_UP);
+			stopWalkUp();
 		}
 
 		if(event.isKeyDown(controller.getDownButton())){
-			state.add(PlayerState.WALK_DOWN);
+			walkDown();
 		}else if(event.isKeyUp(controller.getDownButton())){
-			state.remove(PlayerState.WALK_DOWN);
+			stopWalkDown();
 		}
 		
 		if(event.isKeyDown(controller.getaButton())){
-			state.add(PlayerState.ATTACK);
 			attack();
 		}else if(event.isKeyUp(controller.getaButton())){
 			stand();
@@ -116,6 +145,66 @@ public class Player implements Drawable, Updatable{
 
 	public void setController(Controller controller) {
 		this.controller = controller;
+	}
+
+	@Override
+	public void onWalkLeft() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onWalkRight() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onWalkUp() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onWalkDown() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onStopWalkLeft() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onStopWalkRight() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onStopWalkUp() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onStopWalkDown() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onAttack() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onStopAttack() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
