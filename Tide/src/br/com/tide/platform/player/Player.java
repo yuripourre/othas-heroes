@@ -47,6 +47,12 @@ public class Player extends GeometricLayer implements Drawable, Updatable, Playe
 		}
 
 	}
+	
+	public void die(){
+		state.clear();
+		state.add(PlayerState.DEAD);
+		onDie();
+	}
 
 	public void walkLeft(){
 		state.add(PlayerState.WALK_LEFT);
@@ -103,7 +109,7 @@ public class Player extends GeometricLayer implements Drawable, Updatable, Playe
 	public void beignHit(Player who, long when){
 		state.clear();
 		state.add(PlayerState.BEING_HIT);
-		onBeignHit();
+		onBeignHit(who);
 
 		wasHit = when;
 	}
@@ -157,6 +163,10 @@ public class Player extends GeometricLayer implements Drawable, Updatable, Playe
 
 	public boolean isStanding(){
 		return state.contains(PlayerState.STAND);
+	}
+	
+	public boolean isDead(){
+		return state.contains(PlayerState.DEAD);
 	}
 
 	public boolean isBeignHit(){
@@ -238,9 +248,15 @@ public class Player extends GeometricLayer implements Drawable, Updatable, Playe
 	}
 
 	@Override
-	public void onBeignHit() {
+	public void onBeignHit(Player attacker) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public void onDie() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

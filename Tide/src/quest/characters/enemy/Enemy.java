@@ -117,7 +117,7 @@ public abstract class Enemy extends Character{
 
 			startAttack = now;
 
-		}else{
+		}else if(!target.isDead()){
 
 			if(now-startAttack>=attackDelay){
 				target.beignHit(this, now);

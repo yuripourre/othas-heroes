@@ -22,8 +22,10 @@ public interface PlayerListener {
 	
 	public void onStopAttack();
 	
-	public void onBeignHit();
+	public void onBeignHit(Player attacker);
 	
 	public void onStand();
+	
+	public void onDie();
 	
 }
