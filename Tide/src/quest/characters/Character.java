@@ -62,7 +62,17 @@ public class Character extends Player{
 	}
 	
 	@Override
+	public void onBeignHit() {
+			
+		layer.setFrames(3);
+		
+		layer.setXImage(layer.getXTile()*0);
+		layer.setYImage(layer.getYTile()*1);
+	}
+	
+	@Override
 	public void update(long now){
+		super.update(now);
 		
 		if(state.contains(PlayerState.WALK_RIGHT)){
 			this.setOffsetX(walkSpeed);
@@ -80,7 +90,7 @@ public class Character extends Player{
 			layer.setOffsetY(-walkSpeed);
 		}
 				
-		if(isWalking()||isAttacking()){
+		if(isWalking()||isAttacking()||isBeignHit()){
 			layer.nextFrame();
 		}
 		

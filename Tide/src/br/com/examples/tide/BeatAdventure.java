@@ -59,13 +59,12 @@ public class BeatAdventure extends Application{
 	}
 	
 	@Override
-	//public void update(long now){
-	public void timeUpdate(){
-		ninja.update(0);
-		hero.update(0);
-		satyr.update(0);
+	public void timeUpdate(long now){
+		ninja.update(now);
+		hero.update(now);
+		satyr.update(now);
 		
-		skeleton.update(0);		
+		skeleton.update(now);		
 	}
 
 	@Override

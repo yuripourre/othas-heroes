@@ -17,15 +17,20 @@ public class Player extends GeometricLayer implements Drawable, Updatable, Playe
 	protected String name = "Player";
 
 	protected int walkSpeed = 5;
-	
+
 	private Controller controller;
 
 	protected Set<PlayerState> state = new HashSet<PlayerState>();
 
+	protected long attackDelay = 600;
 	
+	protected long hitDelay = 200;
+
+	protected long wasHit = 0;
+
 	public Player(float x, float y, float w, float h){
 		super(x,y,w,h);
-		
+
 		state.add(PlayerState.STAND);
 	}
 
@@ -35,13 +40,19 @@ public class Player extends GeometricLayer implements Drawable, Updatable, Playe
 
 	public void update(long now) {
 
+		if(isBeignHit()){
+			if(now-wasHit>hitDelay){
+				this.stand();
+			}
+		}
+
 	}
 
 	public void walkLeft(){
 		state.add(PlayerState.WALK_LEFT);
 		onWalkLeft();
 	}
-	
+
 	public void stopWalkLeft(){
 		state.remove(PlayerState.WALK_LEFT);
 		onStopWalkLeft();
@@ -51,7 +62,7 @@ public class Player extends GeometricLayer implements Drawable, Updatable, Playe
 		state.add(PlayerState.WALK_RIGHT);
 		onWalkRight();
 	}
-	
+
 	public void stopWalkRight(){
 		state.remove(PlayerState.WALK_RIGHT);
 		onStopWalkRight();
@@ -61,17 +72,17 @@ public class Player extends GeometricLayer implements Drawable, Updatable, Playe
 		state.add(PlayerState.WALK_UP);
 		onWalkUp();
 	}
-	
+
 	public void stopWalkUp(){
 		state.remove(PlayerState.WALK_UP);
 		onStopWalkUp();
 	}
-	
+
 	public void walkDown(){
 		state.add(PlayerState.WALK_DOWN);
 		onWalkDown();
 	}
-	
+
 	public void stopWalkDown(){
 		state.remove(PlayerState.WALK_DOWN);
 		onStopWalkDown();
@@ -82,13 +93,21 @@ public class Player extends GeometricLayer implements Drawable, Updatable, Playe
 		state.add(PlayerState.STAND);
 		onStand();
 	}
-	
+
 	public void attack(){
 		state.clear();
 		state.add(PlayerState.ATTACK);
 		onAttack();
 	}
-	
+
+	public void beignHit(Player who, long when){
+		state.clear();
+		state.add(PlayerState.BEING_HIT);
+		onBeignHit();
+
+		wasHit = when;
+	}
+
 	public void stopAttack(){
 		stand();
 		onStopAttack();
@@ -119,7 +138,7 @@ public class Player extends GeometricLayer implements Drawable, Updatable, Playe
 		}else if(event.isKeyUp(controller.getDownButton())){
 			stopWalkDown();
 		}
-		
+
 		if(event.isKeyDown(controller.getaButton())){
 			attack();
 		}else if(event.isKeyUp(controller.getaButton())){
@@ -131,9 +150,17 @@ public class Player extends GeometricLayer implements Drawable, Updatable, Playe
 	public boolean isWalking(){
 		return state.contains(PlayerState.WALK_RIGHT)||state.contains(PlayerState.WALK_LEFT)||state.contains(PlayerState.WALK_UP)||state.contains(PlayerState.WALK_DOWN);
 	}
-	
+
 	public boolean isAttacking(){
 		return state.contains(PlayerState.ATTACK);
+	}
+
+	public boolean isStanding(){
+		return state.contains(PlayerState.STAND);
+	}
+
+	public boolean isBeignHit(){
+		return state.contains(PlayerState.BEING_HIT);
 	}
 
 	public Controller getController() {
@@ -147,67 +174,73 @@ public class Player extends GeometricLayer implements Drawable, Updatable, Playe
 	@Override
 	public void onWalkLeft() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void onWalkRight() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void onWalkUp() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void onWalkDown() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void onStopWalkLeft() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void onStopWalkRight() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void onStopWalkUp() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void onStopWalkDown() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void onAttack() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void onStopAttack() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void onStand() {
 		// TODO Auto-generated method stub
-		
+
+	}
+
+	@Override
+	public void onBeignHit() {
+		// TODO Auto-generated method stub
+
 	}
 
 }
