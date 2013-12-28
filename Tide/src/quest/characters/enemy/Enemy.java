@@ -11,19 +11,23 @@ public abstract class Enemy extends Character{
 	private List<Player> players;
 
 	private Player target;
-	
+		
 	private int damage = 30;
+	
+	private int playerTarget = -1;
+	
+	private boolean killedAll = false;
+	
+	long startAttack = 0;
 	
 	public Enemy(int x, int y, String rightPath, String leftPath, List<Player> players) {
 		super(x, y, rightPath, leftPath);
 
 		this.players = players;
 
-		target = players.get(0);
+		changeTarget();
 
 	}
-
-	long startAttack = 0;
 
 	@Override
 	public void update(long now) {
@@ -108,10 +112,10 @@ public abstract class Enemy extends Character{
 		}
 		
 	}
-	
+		
 	private void doAttack(long now){
 
-		if(!state.contains(PlayerState.ATTACK)){
+		if(!state.contains(PlayerState.ATTACK)&&!killedAll){
 
 			attack();
 
@@ -124,8 +128,29 @@ public abstract class Enemy extends Character{
 				startAttack = now;
 			}
 
+		}else{
+	
+			//Check of someone is alive
+			for(Player player: players){
+				if(!player.isDead()){
+					changeTarget();
+					return;
+				}
+			}
+			
+			killedAll = true;
+			stand();
+			
 		}
 
+	}
+	
+	private void changeTarget(){
+				
+		playerTarget++;
+		
+		target = players.get(playerTarget);
+		
 	}
 
 }
