@@ -1,37 +1,34 @@
-package quest.characters.enemy;
+package br.com.othas.model;
 
 import java.util.List;
 
-import quest.characters.Character;
 import br.com.tide.platform.player.Player;
 import br.com.tide.platform.player.PlayerState;
 
-public abstract class Enemy extends Character{
-
-	private List<Player> players;
+public abstract class NPC extends Character{
 
 	private Player target;
-		
-	private int damage = 30;
-	
+
 	private int playerTarget = -1;
 	
 	private boolean killedAll = false;
 	
 	long startAttack = 0;
 	
-	public Enemy(int x, int y, String rightPath, String leftPath, List<Player> players) {
+	public NPC(int x, int y, String rightPath, String leftPath) {
 		super(x, y, rightPath, leftPath);
-
-		this.players = players;
-
-		changeTarget();
-
 	}
 
-	@Override
-	public void update(long now) {
+	public void update(long now, List<Character> targets) {
 		super.update(now);
+		
+		if(isDead()){
+			return;
+		}
+		
+		if(target==null){
+			changeTarget(targets);
+		}
 		
 		boolean goLeft = false;
 		boolean goRight = false;
@@ -55,7 +52,7 @@ public abstract class Enemy extends Character{
 		//Verify Actions
 		if(!goRight&&!goLeft&&!goUp&&!goDown){
 			
-			doAttack(now);
+			doAttack(now, targets);
 			
 		}else if(state.contains(PlayerState.ATTACK)){
 			
@@ -113,7 +110,7 @@ public abstract class Enemy extends Character{
 		
 	}
 		
-	private void doAttack(long now){
+	private void doAttack(long now, List<Character> targets){
 
 		if(!state.contains(PlayerState.ATTACK)&&!killedAll){
 
@@ -131,9 +128,9 @@ public abstract class Enemy extends Character{
 		}else{
 	
 			//Check of someone is alive
-			for(Player player: players){
+			for(Player player: targets){
 				if(!player.isDead()){
-					changeTarget();
+					changeTarget(targets);
 					return;
 				}
 			}
@@ -145,11 +142,11 @@ public abstract class Enemy extends Character{
 
 	}
 	
-	private void changeTarget(){
+	private void changeTarget(List<Character> targets){
 				
 		playerTarget++;
 		
-		target = players.get(playerTarget);
+		target = targets.get(playerTarget);
 		
 	}
 

@@ -1,4 +1,6 @@
-package quest.characters;
+package br.com.othas.player;
+
+import br.com.othas.model.Hero;
 
 
 public class Ninja extends Hero{

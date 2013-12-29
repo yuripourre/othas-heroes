@@ -1,7 +1,7 @@
 
 
 import br.com.etyllica.Etyllica;
-import br.com.examples.tide.BeatAdventure;
+import br.com.othas.OthasHeroes;
 
 public class TideBeatEmUp extends Etyllica {
 
@@ -19,7 +19,7 @@ public class TideBeatEmUp extends Etyllica {
 		
 		//Upping three directories we have /Project/bin/assets/images
 				
-		setMainApplication(new BeatAdventure(w,h));
+		setMainApplication(new OthasHeroes(w,h));
 		
 	}
 	

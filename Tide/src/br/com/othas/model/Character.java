@@ -1,6 +1,7 @@
-package quest.characters;
+package br.com.othas.model;
 
 import java.awt.Color;
+import java.util.List;
 
 import br.com.etyllica.core.video.Graphic;
 import br.com.etyllica.layer.AnimatedLayer;
@@ -9,13 +10,15 @@ import br.com.etyllica.util.SVGColor;
 import br.com.tide.platform.player.Player;
 import br.com.tide.platform.player.PlayerState;
 
-public class Character extends Player{
+public abstract class Character extends Player{
 
 	protected AnimatedLayer layer = null;
 
 	private StaticLayer rightLayer = null;
 
 	private StaticLayer leftLayer = null;
+
+	protected Color lifeBarColor = SVGColor.GREEN; 
 
 	public Character(int x, int y, String rightPath, String leftPath) {
 		super(x,y,32,64);
@@ -34,19 +37,21 @@ public class Character extends Player{
 
 	@Override
 	public void draw(Graphic g) {
+
 		layer.draw(g);
 
-		drawLife(g);
+		drawLifeBar(g);
+
 	}
 
-	private void drawLife(Graphic g){
+	private void drawLifeBar(Graphic g){
 
 		g.setColor(Color.BLACK);
 		g.fillRect(x, y+h+4, w, 4);
 
 		int lifeW = (int)(((w-2)*health)/100);
 
-		g.setColor(SVGColor.GREEN);
+		g.setColor(lifeBarColor);
 		g.fillRect(x+1, y+h+5, lifeW, 2);
 	}
 
@@ -84,7 +89,7 @@ public class Character extends Player{
 		//Calculate damage
 		if(health>0){
 
-			health -= 55;
+			health += calculateDefenseDamage(attacker);
 
 			layer.setFrames(3);
 
@@ -96,10 +101,10 @@ public class Character extends Player{
 		}
 
 	}
-
+	
 	@Override
 	public void onDie(){
-
+		
 		layer.setFrames(1);
 
 		layer.setXImage(layer.getXTile()*4);
@@ -111,28 +116,43 @@ public class Character extends Player{
 
 	@Override
 	public void update(long now){
-		super.update(now);		
-
+		super.update(now);
+		
 		if(state.contains(PlayerState.WALK_RIGHT)){
 			this.setOffsetX(walkSpeed);
-			layer.setOffsetX(walkSpeed);
 		}else if(state.contains(PlayerState.WALK_LEFT)){
 			this.setOffsetX(-walkSpeed);
-			layer.setOffsetX(-walkSpeed);
 		}
 
 		if(state.contains(PlayerState.WALK_DOWN)){
 			this.setOffsetY(walkSpeed);
-			layer.setOffsetY(walkSpeed);
 		}else if(state.contains(PlayerState.WALK_UP)){
 			this.setOffsetY(-walkSpeed);
-			layer.setOffsetY(-walkSpeed);
 		}
 
 		if(isWalking()||isAttacking()||isBeignHit()){
 			layer.nextFrame();
 		}
 
+	}
+
+	@Override
+	public void setX(float x){
+		this.x = x;
+		this.layer.setX(x);
+	}
+
+	@Override
+	public void setY(float y){
+		this.y = y;
+		this.layer.setY(y);
+	}
+
+	public abstract void update(long now, List<Character> targets);
+
+	public float calculateDefenseDamage(Player attacker){
+		
+		return -55;
 	}
 
 }
