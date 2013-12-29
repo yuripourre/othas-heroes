@@ -15,11 +15,11 @@ public class EasyController extends Controller{
 		
 		rightButton = KeyEvent.TSK_RIGHT_ARROW;
 		
-		aButton = KeyEvent.TSK_Z;
+		ButtonA = KeyEvent.TSK_Z;
 		
-		bButton = KeyEvent.TSK_X;
+		ButtonB = KeyEvent.TSK_X;
 		
-		cButton = KeyEvent.TSK_C;
+		ButtonC = KeyEvent.TSK_C;
 		
 		startButton = KeyEvent.TSK_ENTER;
 		

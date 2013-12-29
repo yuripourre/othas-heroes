@@ -105,6 +105,12 @@ public class Player extends GeometricLayer implements Drawable, Updatable, Playe
 		state.add(PlayerState.ATTACK);
 		onAttack();
 	}
+	
+	public void specialAttack(){
+		state.clear();
+		state.add(PlayerState.SPECIAL_ATTACK);
+		onSpecialAttack();
+	}
 
 	public void beignHit(Player who, long when){
 		state.clear();
@@ -145,9 +151,17 @@ public class Player extends GeometricLayer implements Drawable, Updatable, Playe
 			stopWalkDown();
 		}
 
-		if(event.isKeyDown(controller.getaButton())){
+		if(event.isKeyDown(controller.getButtonA())){
 			attack();
-		}else if(event.isKeyUp(controller.getaButton())){
+		}else if(event.isKeyUp(controller.getButtonA())){
+			onStopAttack();
+			stand();
+		}
+		
+		if(event.isKeyDown(controller.getButtonB())){
+			specialAttack();
+		}else if(event.isKeyUp(controller.getButtonB())){
+			onStopSpecialAttack();
 			stand();
 		}
 
@@ -237,6 +251,18 @@ public class Player extends GeometricLayer implements Drawable, Updatable, Playe
 
 	@Override
 	public void onStopAttack() {
+		// TODO Auto-generated method stub
+
+	}
+	
+	@Override
+	public void onSpecialAttack() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void onStopSpecialAttack() {
 		// TODO Auto-generated method stub
 
 	}

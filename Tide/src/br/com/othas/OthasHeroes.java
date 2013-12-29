@@ -11,6 +11,7 @@ import br.com.etyllica.core.event.PointerEvent;
 import br.com.etyllica.core.video.Graphic;
 import br.com.othas.model.Character;
 import br.com.othas.model.Hero;
+import br.com.othas.model.NPC;
 import br.com.othas.player.Adventurer;
 import br.com.othas.player.Ninja;
 import br.com.othas.player.Satyr;
@@ -25,6 +26,8 @@ public class OthasHeroes extends Application{
 	}
 	
 	private Skeleton skeleton;
+	
+	private Skeleton skeleton2;
 	
 	private Ninja ninja;
 	
@@ -54,8 +57,11 @@ public class OthasHeroes extends Application{
 		
 		skeleton = new Skeleton(200, 120);
 		
+		skeleton2 = new Skeleton(20, 120);
+		
+		enemies.add(skeleton2);
 		enemies.add(skeleton);
-				
+						
 		loading = 100;
 		
 		updateAtFixedRate(50);
@@ -65,10 +71,12 @@ public class OthasHeroes extends Application{
 	@Override
 	public void timeUpdate(long now){
 		ninja.update(now, enemies);
-		hero.update(now, enemies);
 		satyr.update(now, enemies);
 		
-		skeleton.update(now, players);		
+		hero.updateAsNPC(now, enemies);
+		
+		//skeleton.update(now, players);
+		//skeleton2.update(now, players);
 	}
 
 	@Override
@@ -77,9 +85,10 @@ public class OthasHeroes extends Application{
 		//Order to draw
 		
 		ninja.draw(g);
-		hero.draw(g);		
+		hero.draw(g);
 		satyr.draw(g);
-		skeleton.draw(g);		
+		skeleton.draw(g);
+		skeleton2.draw(g);
 	}
 	
 

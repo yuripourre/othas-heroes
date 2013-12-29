@@ -15,11 +15,11 @@ public class FirstPlayerController extends Controller{
 		
 		rightButton = KeyEvent.TSK_D;
 		
-		aButton = KeyEvent.TSK_H;
+		ButtonA = KeyEvent.TSK_H;
 		
-		bButton = KeyEvent.TSK_J;
+		ButtonB = KeyEvent.TSK_J;
 		
-		cButton = KeyEvent.TSK_K;
+		ButtonC = KeyEvent.TSK_K;
 		
 		startButton = KeyEvent.TSK_F;
 		

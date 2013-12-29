@@ -7,7 +7,7 @@ import br.com.tide.platform.player.PlayerState;
 
 public abstract class NPC extends Character{
 
-	private Player target;
+	private Player target = null;
 
 	private int playerTarget = -1;
 	
@@ -21,7 +21,7 @@ public abstract class NPC extends Character{
 
 	public void update(long now, List<Character> targets) {
 		super.update(now);
-		
+				
 		if(isDead()){
 			return;
 		}
@@ -147,7 +147,7 @@ public abstract class NPC extends Character{
 		playerTarget++;
 		
 		target = targets.get(playerTarget);
-		
+				
 	}
 
 }

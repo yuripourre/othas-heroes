@@ -10,6 +10,7 @@ public enum PlayerState {
 	WALK_RIGHT, 
 	WALK_LEFT, 
 	WALK_UP, 
-	WALK_DOWN,
+	WALK_DOWN, 
+	SPECIAL_ATTACK,
 	
 }

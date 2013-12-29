@@ -4,12 +4,13 @@ import java.util.List;
 
 import br.com.etyllica.util.SVGColor;
 
-public abstract class Hero extends Character{
+public abstract class Hero extends NPC{
 
 	public Hero(int x, int y, String rightPath, String leftPath) {
 		super(x, y, rightPath, leftPath);
 	}
 	
+	@Override
 	public void update(long now, List<Character> targets) {
 		super.update(now);
 		
@@ -32,6 +33,10 @@ public abstract class Hero extends Character{
 			}
 		}
 		
+	}
+	
+	public void updateAsNPC(long now, List<Character> targets) {
+		super.update(now, targets);
 	}
 	
 	private boolean colide(Character target){

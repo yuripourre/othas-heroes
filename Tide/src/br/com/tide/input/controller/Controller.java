@@ -12,11 +12,11 @@ public class Controller {
 	
 	protected int rightButton = KeyEvent.TSK_RIGHT_ARROW;
 	
-	protected int aButton = KeyEvent.TSK_Z;
+	protected int ButtonA = KeyEvent.TSK_Z;
 	
-	protected int bButton = KeyEvent.TSK_X;
+	protected int ButtonB = KeyEvent.TSK_X;
 	
-	protected int cButton = KeyEvent.TSK_C;
+	protected int ButtonC = KeyEvent.TSK_C;
 	
 	protected int startButton = KeyEvent.TSK_ENTER;
 	
@@ -56,28 +56,28 @@ public class Controller {
 		this.rightButton = rightButton;
 	}
 
-	public int getaButton() {
-		return aButton;
+	public int getButtonA() {
+		return ButtonA;
 	}
 
-	public void setaButton(int aButton) {
-		this.aButton = aButton;
+	public void setButtonA(int buttonA) {
+		ButtonA = buttonA;
 	}
 
-	public int getbButton() {
-		return bButton;
+	public int getButtonB() {
+		return ButtonB;
 	}
 
-	public void setbButton(int bButton) {
-		this.bButton = bButton;
+	public void setButtonB(int buttonB) {
+		ButtonB = buttonB;
 	}
 
-	public int getcButton() {
-		return cButton;
+	public int getButtonC() {
+		return ButtonC;
 	}
 
-	public void setcButton(int cButton) {
-		this.cButton = cButton;
+	public void setButtonC(int buttonC) {
+		ButtonC = buttonC;
 	}
 
 	public int getStartButton() {
