@@ -143,11 +143,25 @@ public abstract class NPC extends Character{
 	}
 	
 	private void changeTarget(List<Character> targets){
-				
-		playerTarget++;
 		
-		target = targets.get(playerTarget);
-				
+		this.target = aimTarget(targets);
+		
+		while(this.target.isDead()&&this.target!=null){
+			this.target = aimTarget(targets);
+		}
+		
 	}
+	
+	protected Character aimTarget(List<Character> targets){
+		
+		for(Character target: targets){
+			if(!target.isDead()){
+				return target;
+			}
+		}		
+		
+		return null;
+	}
+	
 
 }
