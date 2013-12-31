@@ -70,8 +70,8 @@ public abstract class Character extends Player{
 
 		layer.setFrames(6);
 
-		layer.setYImage(layer.getYTile()*0);
-		layer.setXImage(layer.getXTile()*0);
+		layer.setYImage(layer.getTileH()*0);
+		layer.setXImage(layer.getTileW()*0);
 	}
 
 	@Override
@@ -79,8 +79,8 @@ public abstract class Character extends Player{
 
 		layer.setFrames(4);
 
-		layer.setXImage(layer.getXTile()*0);
-		layer.setYImage(layer.getYTile()*2);
+		layer.setXImage(layer.getTileW()*0);
+		layer.setYImage(layer.getTileH()*2);
 	}
 
 	@Override
@@ -93,8 +93,8 @@ public abstract class Character extends Player{
 
 			layer.setFrames(3);
 
-			layer.setXImage(layer.getXTile()*0);
-			layer.setYImage(layer.getYTile()*1);
+			layer.setXImage(layer.getTileW()*0);
+			layer.setYImage(layer.getTileH()*1);
 
 		}else{
 			die();
@@ -107,10 +107,10 @@ public abstract class Character extends Player{
 		
 		layer.setFrames(1);
 
-		layer.setXImage(layer.getXTile()*4);
-		layer.setYImage(layer.getYTile()*5);
+		layer.setXImage(layer.getTileW()*4);
+		layer.setYImage(layer.getTileH()*5);
 		layer.setXTile(64);
-		layer.setYTile(64);
+		layer.setTileH(64);
 
 	}
 

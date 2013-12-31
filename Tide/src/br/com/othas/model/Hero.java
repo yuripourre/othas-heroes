@@ -19,7 +19,6 @@ public abstract class Hero extends NPC{
 			for(Character target: targets){
 				if(colide(target)){
 					target.beignHit(this, now);
-					target.setOffsetX(-5);
 				}
 			}
 			
