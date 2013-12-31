@@ -137,13 +137,13 @@ public abstract class Character extends Player{
 	}
 
 	@Override
-	public void setX(float x){
+	public void setX(int x){
 		this.x = x;
 		this.layer.setX(x);
 	}
 
 	@Override
-	public void setY(float y){
+	public void setY(int y){
 		this.y = y;
 		this.layer.setY(y);
 	}

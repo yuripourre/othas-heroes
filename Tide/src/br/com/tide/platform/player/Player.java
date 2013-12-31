@@ -28,7 +28,7 @@ public class Player extends GeometricLayer implements Drawable, Updatable, Playe
 
 	protected long wasHit = 0;
 
-	public Player(float x, float y, float w, float h){
+	public Player(int x, int y, int w, int h){
 		super(x,y,w,h);
 
 		state.add(PlayerState.STAND);
