@@ -4,7 +4,7 @@ package br.com.othas;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.etyllica.core.application.Application;
+import br.com.etyllica.context.Application;
 import br.com.etyllica.core.event.GUIEvent;
 import br.com.etyllica.core.event.KeyEvent;
 import br.com.etyllica.core.event.PointerEvent;
@@ -19,7 +19,7 @@ import br.com.othas.player.Skeleton;
 import br.com.tide.input.controller.EasyController;
 import br.com.tide.input.controller.FirstPlayerController;
 
-public class OthasHeroes extends Application{
+public class OthasHeroes extends Application {
 
 	public OthasHeroes(int w, int h) {
 		super(w, h);
@@ -80,7 +80,7 @@ public class OthasHeroes extends Application{
 		ninja.update(now, enemies);
 		satyr.update(now, enemies);
 
-		hero.updateAsNPC(now, enemies);
+		//hero.updateAsNPC(now, enemies);
 
 		//skeleton.update(now, players);
 		//skeleton2.update(now, players);
