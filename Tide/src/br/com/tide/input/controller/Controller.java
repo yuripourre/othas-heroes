@@ -20,6 +20,8 @@ public class Controller {
 	
 	protected int startButton = KeyEvent.TSK_ENTER;
 	
+	protected int selectButton = KeyEvent.TSK_SPACE;
+	
 	public Controller(){
 		super();
 	}

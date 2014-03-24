@@ -2,9 +2,9 @@ package br.com.tide.input.controller;
 
 import br.com.etyllica.core.event.KeyEvent;
 
-public class FirstPlayerController extends Controller{
+public class FirstPlayerController extends Controller {
 		
-	public FirstPlayerController(){
+	public FirstPlayerController() {
 		super();
 		
 		upButton = KeyEvent.TSK_W;
@@ -22,6 +22,8 @@ public class FirstPlayerController extends Controller{
 		ButtonC = KeyEvent.TSK_K;
 		
 		startButton = KeyEvent.TSK_F;
+		
+		selectButton = KeyEvent.TSK_G;
 		
 	}
 

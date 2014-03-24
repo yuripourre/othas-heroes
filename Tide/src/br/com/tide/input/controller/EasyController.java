@@ -2,9 +2,9 @@ package br.com.tide.input.controller;
 
 import br.com.etyllica.core.event.KeyEvent;
 
-public class EasyController extends Controller{
+public class EasyController extends Controller {
 		
-	public EasyController(){
+	public EasyController() {
 		super();
 		
 		upButton = KeyEvent.TSK_UP_ARROW;
@@ -22,6 +22,8 @@ public class EasyController extends Controller{
 		ButtonC = KeyEvent.TSK_C;
 		
 		startButton = KeyEvent.TSK_ENTER;
+		
+		startButton = KeyEvent.TSK_SPACE;
 		
 	}
 
