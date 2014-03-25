@@ -21,7 +21,7 @@ public class Satyr extends Hero{
 	@Override
 	public void onSpecialAttack() {
 		
-		Satyr summon = new Satyr((int)x-20, (int)y-20);
+		Satyr summon = new Satyr(getX()-20, getY()-20);
 		summon.layer.setOpacity(80);
 		summon.lifeBarColor = SVGColor.ALICE_BLUE;
 		

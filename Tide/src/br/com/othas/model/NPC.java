@@ -5,9 +5,9 @@ import java.util.List;
 import br.com.tide.platform.player.Player;
 import br.com.tide.platform.player.PlayerState;
 
-public abstract class NPC extends Character{
+public abstract class NPC extends Character {
 
-	private Player target = null;
+	private Character target = null;
 
 	private int playerTarget = -1;
 	
