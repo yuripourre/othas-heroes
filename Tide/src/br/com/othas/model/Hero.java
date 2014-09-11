@@ -2,9 +2,9 @@ package br.com.othas.model;
 
 import java.util.List;
 
-import br.com.etyllica.util.SVGColor;
+import br.com.etyllica.core.graphics.SVGColor;
 
-public abstract class Hero extends NPC{
+public abstract class Hero extends NPC {
 
 	public Hero(int x, int y, String rightPath, String leftPath) {
 		super(x, y, rightPath, leftPath);

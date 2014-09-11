@@ -2,18 +2,18 @@
 
 import br.com.etyllica.EtyllicaFrame;
 import br.com.etyllica.context.Application;
-import br.com.othas.OthasHeroes;
+import br.com.othas.OthasHeroesApplication;
 
-public class TideBeatEmUp extends EtyllicaFrame {
+public class OthasHeroes extends EtyllicaFrame {
 
 	private static final long serialVersionUID = 1L;
 
-	public TideBeatEmUp() {
+	public OthasHeroes() {
 		super(480, 320);
 	}
 	
 	public static void main(String[] args){
-		TideBeatEmUp tide = new TideBeatEmUp();
+		OthasHeroes tide = new OthasHeroes();
 		tide.init();
 	}
 	
@@ -25,7 +25,7 @@ public class TideBeatEmUp extends EtyllicaFrame {
 		
 		//Upping three directories we have /Project/bin/assets/images
 				
-		return new OthasHeroes(w,h);
+		return new OthasHeroesApplication(w,h);
 		
 	}
 	

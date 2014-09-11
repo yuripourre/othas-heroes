@@ -4,14 +4,16 @@ import java.awt.Color;
 import java.util.List;
 
 import br.com.etyllica.core.Drawable;
-import br.com.etyllica.core.video.Graphic;
+import br.com.etyllica.core.graphics.Graphic;
+import br.com.etyllica.core.graphics.SVGColor;
 import br.com.etyllica.layer.AnimatedLayer;
 import br.com.etyllica.layer.StaticLayer;
-import br.com.etyllica.util.SVGColor;
-import br.com.tide.platform.player.Player;
-import br.com.tide.platform.player.PlayerState;
+import br.com.tide.ActivePlayer;
+import br.com.tide.PlayerState;
+import br.com.tide.platform.player.PlatformPlayer;
+import br.com.tide.platform.player.PlatformPlayerListener;
 
-public abstract class Character extends Player implements Drawable {
+public abstract class Character extends PlatformPlayer implements Drawable, PlatformPlayerListener {
 
 	protected AnimatedLayer layer = null;
 
@@ -24,6 +26,9 @@ public abstract class Character extends Player implements Drawable {
 	public Character(int x, int y, String rightPath, String leftPath) {
 		super();
 
+		//Avoid new classes creation
+		listener = this;
+		
 		rightLayer = new StaticLayer(rightPath);
 
 		leftLayer = new StaticLayer(leftPath);
@@ -48,12 +53,12 @@ public abstract class Character extends Player implements Drawable {
 	private void drawLifeBar(Graphic g) {
 
 		g.setColor(Color.BLACK);
-		g.fillRect(layer.getX(), layer.getY()+layer.getTileW()+4, layer.getTileW(), 4);
+		g.fillRect(layer.getX(), layer.getY()+layer.getTileH()+4, layer.getTileW(), 4);
 
 		int lifeW = (int)(((layer.getTileW()-2)*health)/100);
 
 		g.setColor(lifeBarColor);
-		g.fillRect(layer.getX()+1, layer.getY()+layer.getTileW()+5, lifeW, 2);
+		g.fillRect(layer.getX()+1, layer.getY()+layer.getTileH()+5, lifeW, 2);
 	}
 
 	@Override
@@ -85,7 +90,7 @@ public abstract class Character extends Player implements Drawable {
 	}
 
 	@Override
-	public void onBeignHit(Player attacker) {
+	public void onBeignHit(ActivePlayer attacker) {
 
 		//Calculate damage
 		if(health>0) {
@@ -119,15 +124,15 @@ public abstract class Character extends Player implements Drawable {
 	public void update(long now) {
 		super.update(now);
 
-		if(state.contains(PlayerState.WALK_RIGHT)) {
+		if(states.contains(PlayerState.WALK_RIGHT)) {
 			this.layer.setOffsetX(walkSpeed);
-		}else if(state.contains(PlayerState.WALK_LEFT)) {
+		}else if(states.contains(PlayerState.WALK_LEFT)) {
 			this.layer.setOffsetX(-walkSpeed);
 		}
 
-		if(state.contains(PlayerState.WALK_DOWN)) {
+		if(states.contains(PlayerState.WALK_DOWN)) {
 			this.layer.setOffsetY(walkSpeed);
-		}else if(state.contains(PlayerState.WALK_UP)) {
+		}else if(states.contains(PlayerState.WALK_UP)) {
 			this.layer.setOffsetY(-walkSpeed);
 		}
 
@@ -163,9 +168,45 @@ public abstract class Character extends Player implements Drawable {
 
 	public abstract void update(long now, List<Character> targets);
 
-	public float calculateDefenseDamage(Player attacker) {
+	public float calculateDefenseDamage(ActivePlayer attacker) {
 
 		return -55;
+	}
+
+	@Override
+	public void onWalkUp() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onWalkDown() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onStopWalkLeft() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onStopWalkRight() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onStopWalkUp() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onStopWalkDown() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

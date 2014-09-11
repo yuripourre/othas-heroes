@@ -2,8 +2,8 @@ package br.com.othas.model;
 
 import java.util.List;
 
-import br.com.tide.platform.player.Player;
-import br.com.tide.platform.player.PlayerState;
+import br.com.tide.PlayerState;
+import br.com.tide.platform.player.PlatformPlayer;
 
 public abstract class NPC extends Character {
 
@@ -54,7 +54,7 @@ public abstract class NPC extends Character {
 			
 			doAttack(now, targets);
 			
-		}else if(state.contains(PlayerState.ATTACK)){
+		}else if(states.contains(PlayerState.ATTACK)){
 			
 			stopAttack();
 			
@@ -74,7 +74,7 @@ public abstract class NPC extends Character {
 		
 		if(goUp){
 			walkUp();
-		}else if(state.contains(PlayerState.WALK_UP)){
+		}else if(states.contains(PlayerState.WALK_UP)){
 			stopWalkUp();
 		}
 		
@@ -84,7 +84,7 @@ public abstract class NPC extends Character {
 		
 		if(goDown){
 			walkDown();
-		}else if(state.contains(PlayerState.WALK_DOWN)){
+		}else if(states.contains(PlayerState.WALK_DOWN)){
 			stopWalkDown();
 		}
 		
@@ -94,7 +94,7 @@ public abstract class NPC extends Character {
 
 		if(goLeft){
 			walkLeft();
-		}else if(state.contains(PlayerState.WALK_LEFT)){
+		}else if(states.contains(PlayerState.WALK_LEFT)){
 			stopWalkLeft();
 		}
 		
@@ -104,7 +104,7 @@ public abstract class NPC extends Character {
 		
 		if(goRight){
 			walkRight();
-		}else if(state.contains(PlayerState.WALK_RIGHT)){
+		}else if(states.contains(PlayerState.WALK_RIGHT)){
 			stopWalkRight();
 		}
 		
@@ -112,7 +112,7 @@ public abstract class NPC extends Character {
 		
 	private void doAttack(long now, List<Character> targets){
 
-		if(!state.contains(PlayerState.ATTACK)&&!killedAll){
+		if(!states.contains(PlayerState.ATTACK)&&!killedAll){
 
 			attack();
 
@@ -128,7 +128,7 @@ public abstract class NPC extends Character {
 		}else{
 	
 			//Check of someone is alive
-			for(Player player: targets){
+			for(PlatformPlayer player: targets){
 				if(!player.isDead()){
 					changeTarget(targets);
 					return;

@@ -8,7 +8,7 @@ import br.com.etyllica.context.Application;
 import br.com.etyllica.core.event.GUIEvent;
 import br.com.etyllica.core.event.KeyEvent;
 import br.com.etyllica.core.event.PointerEvent;
-import br.com.etyllica.core.video.Graphic;
+import br.com.etyllica.core.graphics.Graphic;
 import br.com.othas.model.Character;
 import br.com.othas.model.Hero;
 import br.com.othas.model.NPC;
@@ -16,12 +16,13 @@ import br.com.othas.player.Adventurer;
 import br.com.othas.player.Ninja;
 import br.com.othas.player.Satyr;
 import br.com.othas.player.Skeleton;
+import br.com.tide.input.controller.Controller;
 import br.com.tide.input.controller.EasyController;
 import br.com.tide.input.controller.FirstPlayerController;
 
-public class OthasHeroes extends Application {
+public class OthasHeroesApplication extends Application {
 
-	public OthasHeroes(int w, int h) {
+	public OthasHeroesApplication(int w, int h) {
 		super(w, h);
 	}
 
@@ -38,20 +39,23 @@ public class OthasHeroes extends Application {
 	private List<Character> enemies = new ArrayList<Character>();
 
 	private List<NPC> skeletons = new ArrayList<NPC>();
+	
+	private Controller controller1;
+	private Controller controller2;
 
 	@Override
 	public void load() {
 
 		loading = 10;
-
+		
 		ninja = new Ninja(115, 220);
-		ninja.setController(new EasyController());
+		controller1 = new FirstPlayerController(ninja);
 
 		hero = new Adventurer(85, 250);
-		//hero.setController(new FirstPlayerController());
+		//controller1 = new EasyController(hero);
 
 		satyr = new Satyr(85, 200);
-		satyr.setController(new FirstPlayerController());
+		controller2 = new EasyController(satyr);
 
 		players.add(hero);
 
@@ -111,10 +115,9 @@ public class OthasHeroes extends Application {
 	@Override
 	public GUIEvent updateKeyboard(KeyEvent event) {
 
-		ninja.handleEvent(event);
-		//hero.handleEvent(event);
+		controller1.handleEvent(event);
 
-		satyr.handleEvent(event);
+		controller2.handleEvent(event);
 
 		return null;
 	}
