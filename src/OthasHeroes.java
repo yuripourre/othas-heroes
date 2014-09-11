@@ -19,14 +19,11 @@ public class OthasHeroes extends EtyllicaFrame {
 	
 	@Override
 	public Application startApplication() {
-				
-		//Etyllica tries to find the resources as your Application should be
-		//To avoid this you should put your /assets/images in /Project/bin/examples/etyllica/tutorial1/
 		
-		//Upping three directories we have /Project/bin/assets/images
+		String path = OthasHeroes.class.getResource("").toString();
+		setPath(path+"../");
 				
-		return new OthasHeroesApplication(w,h);
-		
+		return new OthasHeroesApplication(w, h);
 	}
 	
 }
