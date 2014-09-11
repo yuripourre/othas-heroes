@@ -1,14 +1,8 @@
 # Pre-Compiled Files #
 /bin
-!/bin/assets/*
-
-# SDK Projects
-
-sdk/
+*.class
+.classpath
+.project
 
 # Automatic Generated Files #
 *.applet
-
-# Package Files #
-*.war
-*.ear
