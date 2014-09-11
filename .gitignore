@@ -1,8 +1,11 @@
 # Pre-Compiled Files #
 /bin
 *.class
+
+# Eclipse Files #
 .classpath
 .project
+.settings/
 
 # Automatic Generated Files #
 *.applet
