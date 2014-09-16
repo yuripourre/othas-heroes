@@ -2,8 +2,8 @@ package br.com.othas.model;
 
 import java.util.List;
 
+import br.com.tide.ActivePlayer;
 import br.com.tide.PlayerState;
-import br.com.tide.platform.player.PlatformPlayer;
 
 public abstract class NPC extends Character {
 
@@ -128,7 +128,7 @@ public abstract class NPC extends Character {
 		}else{
 	
 			//Check of someone is alive
-			for(PlatformPlayer player: targets){
+			for(ActivePlayer player: targets) {
 				if(!player.isDead()){
 					changeTarget(targets);
 					return;

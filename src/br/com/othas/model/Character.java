@@ -10,10 +10,10 @@ import br.com.etyllica.layer.AnimatedLayer;
 import br.com.etyllica.layer.StaticLayer;
 import br.com.tide.ActivePlayer;
 import br.com.tide.PlayerState;
-import br.com.tide.platform.player.PlatformPlayer;
-import br.com.tide.platform.player.PlatformPlayerListener;
+import br.com.tide.arcade.player.ArcadePlayer;
+import br.com.tide.arcade.player.ArcadePlayerListener;
 
-public abstract class Character extends PlatformPlayer implements Drawable, PlatformPlayerListener {
+public abstract class Character extends ArcadePlayer implements Drawable, ArcadePlayerListener {
 
 	protected AnimatedLayer layer = null;
 
