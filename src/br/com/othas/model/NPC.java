@@ -38,14 +38,14 @@ public abstract class NPC extends Character {
 		if(target.getX()+target.getW()/2<this.getX()){
 			goLeft = true;
 		}
-		if(target.getX()>this.getX()+this.getW()/2+walkSpeed){
+		if(target.getX()>this.getX()+this.getW()/2+currentSpeed){
 			goRight = true;
 		}
 
 		if(target.getY()<this.getY()){
 			goUp = true;
 		}
-		else if(target.getY()>this.getY()+walkSpeed){
+		else if(target.getY()>this.getY()+currentSpeed){
 			goDown = true;
 		}
 

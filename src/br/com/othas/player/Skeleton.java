@@ -8,7 +8,7 @@ public class Skeleton extends NPC {
 	public Skeleton(int x, int y) {
 		super(x, y, "mv/skeleton.png", "mv/skeleton_inv.png");
 		
-		walkSpeed = 3;
+		currentSpeed = 3;
 	}
 
 }

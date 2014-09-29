@@ -37,7 +37,7 @@ public abstract class Character extends ArcadePlayer implements Drawable, Arcade
 		layer.setFrames(6);
 		layer.setStopped(false);
 
-		onWalkRight();
+		onWalkRight(this);
 
 	}
 
@@ -62,12 +62,12 @@ public abstract class Character extends ArcadePlayer implements Drawable, Arcade
 	}
 
 	@Override
-	public void onWalkLeft() {
+	public void onWalkLeft(ArcadePlayer player) {
 		layer.cloneLayer(leftLayer);
 	}
 
 	@Override
-	public void onWalkRight() {
+	public void onWalkRight(ArcadePlayer player) {
 		layer.cloneLayer(rightLayer);
 	}
 
@@ -125,15 +125,15 @@ public abstract class Character extends ArcadePlayer implements Drawable, Arcade
 		super.update(now);
 
 		if(states.contains(PlayerState.WALK_RIGHT)) {
-			this.layer.setOffsetX(walkSpeed);
+			this.layer.setOffsetX(currentSpeed);
 		}else if(states.contains(PlayerState.WALK_LEFT)) {
-			this.layer.setOffsetX(-walkSpeed);
+			this.layer.setOffsetX(-currentSpeed);
 		}
 
 		if(states.contains(PlayerState.WALK_DOWN)) {
-			this.layer.setOffsetY(walkSpeed);
+			this.layer.setOffsetY(currentSpeed);
 		}else if(states.contains(PlayerState.WALK_UP)) {
-			this.layer.setOffsetY(-walkSpeed);
+			this.layer.setOffsetY(-currentSpeed);
 		}
 
 		if(isWalking()||isAttacking()||isBeignHit()) {
@@ -174,37 +174,37 @@ public abstract class Character extends ArcadePlayer implements Drawable, Arcade
 	}
 
 	@Override
-	public void onWalkUp() {
+	public void onWalkUp(ArcadePlayer player) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void onWalkDown() {
+	public void onWalkDown(ArcadePlayer player) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void onStopWalkLeft() {
+	public void onStopWalkLeft(ArcadePlayer player) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void onStopWalkRight() {
+	public void onStopWalkRight(ArcadePlayer player) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void onStopWalkUp() {
+	public void onStopWalkUp(ArcadePlayer player) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void onStopWalkDown() {
+	public void onStopWalkDown(ArcadePlayer player) {
 		// TODO Auto-generated method stub
 		
 	}
